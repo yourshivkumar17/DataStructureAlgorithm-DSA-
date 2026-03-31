@@ -1,15 +1,24 @@
+import java.util.*;
 public class DailyTemperature {
-    public static int[] dailyTemperatures(int[] t) {
-        Stack<Integer> s = new Stack<>();
-        int[] res = new int[t.length];
-        for(int i =0; i<t.length; i++) {
-            while(!s.isEmpty() && t[i] > t[s.peek()]) {
-                int index = s.pop();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] temperature = new int[n];
+        for(int i=0; i<n; i++) {
+            temperature[i] = sc.nextInt();
+        }
+        Stack<Integer> stack = new Stack<>();
+        int[] res = new int[n];
+        for(int i=0; i<n; i++) {
+            while(!stack.isEmpty() && temperature[i] > temperature[stack.peek()]) {
+                int index = stack.pop();
                 res[index] = i - index;
             }
-            s.push(i);
+            stack.push(i);
         }
-        return res;
+        for(int i=0; i<n; i++) {
+            System.out.print(res[i] + " ");
+        }
+        sc.close();
     }
-    
 }
