@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class LastStoneWeight {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+
+        for(int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        while(n > 1) {
+            Arrays.sort(a, 0, n);
+            a[n-2] = a[n-1] - a[n-2];
+            n--;
+        }
+
+        System.out.print(n == 1 ? a[0] : 0);
+    }
+}
